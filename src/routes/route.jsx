@@ -5,6 +5,7 @@ import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { AuthProvider } from "../context/AuthContext";
 import { LayoutGlobal } from "../layouts/LayoutGlobal";
+import { Habitaciones } from "../pages/Habitaciones";
 
 const RoutesApp = () => {
   return (
@@ -12,6 +13,7 @@ const RoutesApp = () => {
       <Routes>
         <Route element={<LayoutGlobal />}>
           <Route index element={<Home />} />
+          <Route path="habitaciones" element={<Habitaciones />} />
         </Route>
 
         <Route element={<AuthLayout />}>
