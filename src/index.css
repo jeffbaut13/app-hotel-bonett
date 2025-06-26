@@ -146,3 +146,7 @@ input {
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
+input[type="radio"] {
+  width: 1rem;
+  height: 1rem;
+}

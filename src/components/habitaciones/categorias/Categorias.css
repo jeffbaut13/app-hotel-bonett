@@ -1,0 +1,35 @@
+.container-categoria {
+  width: 100%;
+  padding: 0 1rem;
+}
+.form-categoria {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+  background-color: rgb(54, 54, 54);
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+  text-transform: capitalize;
+}
+.form-categoria_item {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(41, 41, 41);
+  min-width: 10rem;
+  padding: 0.5rem;
+  border-radius: 0.45rem;
+}
+.form-categoria_item_label {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+.button-categoria {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0.5rem 0;
+}

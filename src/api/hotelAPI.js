@@ -27,7 +27,7 @@ export const crearCategoriaHabitacion = (data) => api.post('/categoria-habitacio
 // CATEGORÍAS DE CAMA
 // ==========================
 export const obtenerCategoriasCama = () => api.get('/categoria-camas');
-export const crearCategoriaCama = (data) => api.post('/categoria-cama', data);
+export const crearCategoriaCama = (data) => api.post('/categoria-camas', data);
 
 // ==========================
 // CAMAS
