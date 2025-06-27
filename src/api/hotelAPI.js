@@ -13,7 +13,11 @@ const api = axios.create({
 // HABITACIONES
 // ==========================
 export const obtenerHabitaciones = () => api.get('/habitaciones');
-export const crearHabitacion = (data) => api.post('/habitaciones', data);
+export const crearHabitacion = async (data) => {
+  const response = await api.post('/habitaciones', data);
+  return response.data; //  
+};
+
 export const editarHabitacion = (id, data) => api.put(`/habitaciones/${id}`, data);
 export const eliminarHabitacion = (id) => api.delete(`/habitaciones/${id}`);
 

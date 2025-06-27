@@ -5,13 +5,11 @@ import { MdOpenInFull } from "react-icons/md";
 
 export const CrearCategoriaCama = ({ crearCategoriaCama, cargarDatos }) => {
   const [open, setOpen] = useState(false);
-  const [categoriaCamaData, setCategoriaCamaData] = useState({});
+
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
-    setCategoriaCamaData(data);
-
-    await crearCategoriaCama(categoriaCamaData);
+    await crearCategoriaCama(data);
     alert("Categoría de Cama creada");
     cargarDatos();
     reset();

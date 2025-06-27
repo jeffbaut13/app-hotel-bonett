@@ -9,7 +9,6 @@ export const CategoriaHabitacionForm = ({
 }) => {
   const { register, handleSubmit, reset } = useForm();
   const [open, setOpen] = useState(false);
-  const [categoriaHabitacionData, setCategoriaHabitacionData] = useState({});
 
   const booleanFields = [
     "tv",
@@ -38,9 +37,7 @@ export const CategoriaHabitacionForm = ({
       parsedData[key] = data[key] === "true";
     });
 
-    setCategoriaHabitacionData(parsedData);
-
-    await crearCategoriaHabitacion(categoriaHabitacionData);
+    await crearCategoriaHabitacion(parsedData);
     alert("Categoría de habitación creada");
     cargarDatos();
     reset();
