@@ -47,6 +47,8 @@ export const HabitacionesComponent = () => {
     }
   };
 
+  console.log(camas);
+
   return (
     <div className="habitaciones max-w">
       <CategoriaHabitacionForm
