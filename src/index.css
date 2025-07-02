@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .lato-thin {
@@ -61,6 +63,7 @@ body {
   min-width: 320px;
   height: 100%;
   width: 100%;
+  background-color: #222222;
 }
 html,
 #root {
@@ -99,6 +102,7 @@ img {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin: 1rem 0;
 }
 p {
   padding: 0;
@@ -111,32 +115,42 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #ffffff;
+  color: #213547;
   cursor: pointer;
   transition: border-color 0.25s;
 }
+.items {
+  border-radius: 0.5rem;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.active {
+  background-color: rgb(2, 141, 4);
+  color: #ffffff;
+}
+.nueva {
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}
 button:hover {
-  border-color: #646cff;
+  background-color: #e1e1e1;
+  color: #213547;
+  
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-span.error {
+.error {
   color: brown;
 }
 input {
@@ -145,6 +159,8 @@ input {
   border: none;
   border-radius: 0.5rem;
   padding: 0.5rem;
+  background-color: #484848;
+  color: #ffffff;
 }
 input[type="radio"] {
   width: 1rem;

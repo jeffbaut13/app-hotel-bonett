@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { IoMdAddCircle, IoMdCloseCircle } from "react-icons/io";
 
 export const CrearHabitacion = ({
   categoriasHabitacion,
@@ -6,6 +8,14 @@ export const CrearHabitacion = ({
   crearHabitacion,
   asignarCamaAHabitacion,
   cargarDatos,
+  setActiveForm,
+  activeForm,
+  setActiveFormCama,
+  activeFormCama,
+  categoriaHabitacion,
+  setCategoriaHabitacion,
+  idCama,
+  setIdCama,
 }) => {
   const {
     register,
@@ -21,19 +31,21 @@ export const CrearHabitacion = ({
         piso: parseInt(data.piso),
         telefono: parseInt(data.telefono),
         categoriaHabitacion: {
-          idCategoriaHabitacion: parseInt(data.idCategoriaHabitacion),
+          idCategoriaHabitacion: parseInt(categoriaHabitacion),
         },
       });
 
       await asignarCamaAHabitacion({
         idHabitacion: habitacion.idHabitacion,
-        idCama: parseInt(data.idCama),
+        idCama: parseInt(idCama),
         estado: "Disponible",
       });
 
-      alert("Habitación creada y cama asignada");
+      alert("Habitación creada");
       cargarDatos();
       reset();
+      setCategoriaHabitacion(null);
+      setIdCama(null);
     } catch (err) {
       console.error(err);
       alert("Error al crear habitación");
@@ -42,14 +54,15 @@ export const CrearHabitacion = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>Crear Habitación</h3>
-
+      <form
+        className="habitaciones_form mt-2"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <input
           placeholder="Número de habitación"
           {...register("nombre", { required: "El nombre es obligatorio" })}
         />
-        {errors.nombre && <p>{errors.nombre.message}</p>}
+        {errors.nombre && <p className="error">{errors.nombre.message}</p>}
 
         <input
           placeholder="Piso"
@@ -59,7 +72,7 @@ export const CrearHabitacion = ({
             valueAsNumber: true,
           })}
         />
-        {errors.piso && <p>{errors.piso.message}</p>}
+        {errors.piso && <p className="error">{errors.piso.message}</p>}
 
         <input
           placeholder="Teléfono"
@@ -69,38 +82,107 @@ export const CrearHabitacion = ({
             valueAsNumber: true,
           })}
         />
-        {errors.telefono && <p>{errors.telefono.message}</p>}
+        {errors.telefono && <p className="error">{errors.telefono.message}</p>}
 
-        <select
-          {...register("idCategoriaHabitacion", {
-            required: "Seleccione una categoría",
-          })}
-        >
-          <option value="">Seleccione Categoría</option>
-          {categoriasHabitacion.map((c) => (
-            <option
-              key={c.idCategoriaHabitacion}
-              value={c.idCategoriaHabitacion}
-            >
-              {c.nombre}
-            </option>
-          ))}
-        </select>
-        {errors.idCategoriaHabitacion && (
-          <p>{errors.idCategoriaHabitacion.message}</p>
+        {!activeFormCama && (
+          <div className="w-full">
+            <h2 className="mt-2">Selecciona o crea un tipo de habitación</h2>
+            <div className="flex categorias">
+              {categoriasHabitacion.map((c) => (
+                <span
+                  className={`items ${
+                    categoriaHabitacion == c.idCategoriaHabitacion
+                      ? "active"
+                      : ""
+                  }`}
+                  key={c.idCategoriaHabitacion}
+                  onClick={() =>
+                    setCategoriaHabitacion(c.idCategoriaHabitacion)
+                  }
+                >
+                  {c.nombre}
+                </span>
+              ))}
+              <span
+                className="items nueva"
+                onClick={() => setActiveForm(!activeForm)}
+              >
+                {activeForm ? (
+                  <>
+                    <IoMdCloseCircle /> Cerrar
+                  </>
+                ) : (
+                  <>
+                    <IoMdAddCircle /> Nueva habitación
+                  </>
+                )}
+              </span>
+            </div>
+          </div>
         )}
 
-        <select {...register("idCama", { required: "Seleccione una cama" })}>
-          <option value="">Seleccione Cama</option>
-          {camas.map((c) => (
-            <option key={c.id} value={c.id}>
-              Cama #{c.serial}
-            </option>
-          ))}
-        </select>
-        {errors.idCama && <p>{errors.idCama.message}</p>}
+        {!activeForm && (
+          <div className="w-full">
+            <h2>Selecciona o crea una cama</h2>
+            <div className="flex categorias">
+              {camas.map((c) => (
+                <div
+                  style={{ height: "100%" }}
+                  className={`items card-cama ${
+                    idCama == c.id ? "active" : ""
+                  }`}
+                  key={c.id}
+                  onClick={() => setIdCama(c.id)}
+                >
+                  <div>
+                    <h4>{c.serial}</h4>
+                    <p>{c.categoriaCama?.medidas}</p>
+                    <p>{c.categoriaCama?.color}</p>
+                  </div>
 
-        <button type="submit">Crear nueva habitación</button>
+                  <figure
+                    style={{
+                      width: "4rem",
+                      height: "auto",
+                      display: "inline-block",
+                      borderRadius: "10px",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <img
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                      src={c.categoriaCama?.fotoUrl}
+                      alt=""
+                    />
+                  </figure>
+                </div>
+              ))}
+              <span
+                className="items nueva"
+                onClick={() => setActiveFormCama(!activeFormCama)}
+              >
+                {activeFormCama ? (
+                  <>
+                    <IoMdCloseCircle /> Cerrar
+                  </>
+                ) : (
+                  <>
+                    <IoMdAddCircle /> Nueva cama
+                  </>
+                )}
+              </span>
+            </div>
+          </div>
+        )}
+
+        {!activeFormCama && !activeForm && (
+          <button type="submit">Crear nueva habitación</button>
+        )}
       </form>
     </>
   );

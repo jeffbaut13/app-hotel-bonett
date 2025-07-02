@@ -8,6 +8,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: black;
+}
+.header-content {
+  justify-content: space-between;
 }
 
 nav ul {

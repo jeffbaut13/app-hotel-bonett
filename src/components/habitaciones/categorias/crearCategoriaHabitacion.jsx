@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaBed, FaMoneyBill, FaImage, FaFileAlt } from "react-icons/fa";
 import "./Categorias.css";
 import { MdOpenInFull, MdOutlineBedroomParent } from "react-icons/md";
 export const CategoriaHabitacionForm = ({
+  activeForm,
+  setActiveForm,
   crearCategoriaHabitacion,
   cargarDatos,
+  setCategoriaHabitacion,
 }) => {
   const { register, handleSubmit, reset } = useForm();
-  const [open, setOpen] = useState(false);
 
   const booleanFields = [
     "tv",
@@ -37,20 +39,22 @@ export const CategoriaHabitacionForm = ({
       parsedData[key] = data[key] === "true";
     });
 
-    await crearCategoriaHabitacion(parsedData);
+    const catHabt = await crearCategoriaHabitacion(parsedData);
+
+    console.log(catHabt.data);
+
+    setCategoriaHabitacion(catHabt.data.idCategoriaHabitacion);
+
     alert("Categoría de habitación creada");
     cargarDatos();
     reset();
+    setActiveForm(false);
   };
 
   return (
     <>
-      <button className="button-categoria" onClick={() => setOpen(!open)}>
-        <MdOutlineBedroomParent /> Crear nueva categoría de habitación
-        <MdOpenInFull />
-      </button>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {open && (
+      <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
+        {activeForm && (
           <div className="container-categoria">
             <label>
               <FaBed /> Nombre:

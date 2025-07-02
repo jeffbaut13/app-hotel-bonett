@@ -3,3 +3,93 @@
   margin: auto;
   padding: 4rem 0;
 }
+.habitaciones .head_content {
+  width: 100%;
+  padding: 0.5rem;
+}
+.habitaciones_Edit {
+  flex: 1;
+  max-width: 29rem;
+}
+.habitaciones_container {
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card_hotel {
+  width: 70%;
+  justify-content: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.card_hotel_item {
+  background-color: rgb(28, 28, 28);
+  border-radius: 1rem;
+  overflow: hidden;
+  width: 24rem;
+  list-style: none;
+  position: relative;
+}
+.head_content__title {
+  font-size: 2rem;
+  font-weight: 900;
+}
+.head_content__title_items {
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.habitacion_imagen {
+  width: 100%;
+  display: inline-block;
+}
+.habitacion_imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.habitaciones .btn {
+  margin: 2rem 0 1rem 0;
+}
+.card_hotel__title_fixed {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  background-color: rgb(138, 220, 255);
+  color: rgb(62, 62, 62);
+  border-radius: 1rem;
+  padding: 0.2rem 2rem;
+  font-size: 0.7rem;
+}
+
+/* Form */
+
+.habitaciones_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.categorias {
+  align-items: center;
+  justify-content: flex-start;
+  margin: 1rem 0;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.items {
+  background-color: rgb(43, 43, 43);
+  border-radius: 50%;
+}
+.card-cama {
+  display: flex;
+
+  gap: 1rem;
+}
